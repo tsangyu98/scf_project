@@ -179,12 +179,12 @@ LOGGING = {
 # fdfs的访问域名
 FDFS_URL = 'http://:8888/'
 # 指定文件存储类型
-DEFAULT_FILE_STORAGE = 'scf.utils.fdfs.storage.FDFSStorage'
+DEFAULT_FILE_STORAGE = 'utils.fdfs.storage.FDFSStorage'
 
 # 设置DRF框架的异常处理函数
 REST_FRAMEWORK = {
     # 指定DRF框架的异常处理函数
-    'EXCEPTION_HANDLER': 'scf.utils.exceptions.exception_handler',
+    'EXCEPTION_HANDLER': 'utils.exceptions.exception_handler',
 }
 
 # JWT扩展配置
