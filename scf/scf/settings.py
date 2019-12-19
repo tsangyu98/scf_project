@@ -36,8 +36,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
     'rest_framework',  # DRF框架
     'activities',  # 注册活动app
+    'users',  # 用户app
+    'roast',  # 吐槽app
+    'employment',  # 招聘app
+    'answers',  # 问答app
+    'toutiao',  # toutiao的app
 ]
 
 MIDDLEWARE = [
@@ -77,10 +84,10 @@ WSGI_APPLICATION = 'scf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'HOST': '139.224.245.6',  # 数据库主机
+        'HOST': '35.220.251.0',  # 数据库主机
         'PORT': 3306,  # 数据库端口
         'USER': 'scf_project',  # 数据库用户名
-        'PASSWORD': 'eWrFBpSb2H7yhm8k',  # 数据库用户密码
+        'PASSWORD': '3YXTmwpGKyWMhym3',  # 数据库用户密码
         'NAME': 'scf_project'  # 数据库名字
     },
 }
@@ -89,7 +96,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://139.224.245.6:6379/0",
+        "LOCATION": "redis://35.220.251.0:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -178,15 +185,10 @@ LOGGING = {
 }
 
 # fdfs的访问域名
-FDFS_URL = 'http://139.224.245.6:8888/'
+FDFS_URL = 'http://35.220.251.0:8888/'
 # 指定文件存储类型
 DEFAULT_FILE_STORAGE = 'utils.fdfs.storage.FDFSStorage'
 
-# 设置DRF框架的异常处理函数
-REST_FRAMEWORK = {
-    # 指定DRF框架的异常处理函数
-    'EXCEPTION_HANDLER': 'utils.exceptions.exception_handler',
-}
 
 # JWT扩展配置
 REST_FRAMEWORK = {
@@ -197,6 +199,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_PAGINATION_CLASS':  'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,  # 页容量
+    # 指定DRF框架的异常处理函数
+    'EXCEPTION_HANDLER': 'utils.exceptions.exception_handler',
 }
 
 # JWT扩展配置
@@ -204,3 +210,10 @@ JWT_AUTH = {
     # 设置生成jwt token的有效时间
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
 }
+
+# 指定本项目使用我们自定义的模型类:
+AUTH_USER_MODEL = 'users.User'
+
+
+# 富文本配置
+CKEDITOR_UPLOAD_PATH = "uploads/"

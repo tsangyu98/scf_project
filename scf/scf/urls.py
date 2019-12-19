@@ -19,4 +19,9 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('activities.urls')),  # activities的路由配置
+    url(r'^', include('users.urls')),  # users的路由配置
+    url(r'^', include('roast.urls')),  # roast的路由配置
+    url(r'^', include('employment.urls')),  # employment的路由配置
+    url(r'^', include('answers.urls')),  # answers的路由配置
+    url(r'^', include('toutiao.urls')),  # toutiao的路由配置
 ]
