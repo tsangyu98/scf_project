@@ -42,13 +42,19 @@ var vm = new Vue({
                 labelid = this.titleTagList[this.tabIndex].id;
             }
             var type = 'new';
+            if (this.problemType == 1) {
+                type = 'hot'
+                var url = host + 'questions/' + labelid + '/label/' + type + '/?ordering=updatetime'
+            }
             if (this.problemType == 2) {
                 type = 'hot'
+                var url = host + 'questions/' + labelid + '/label/' + type + '/?ordering=-useful_count'
             } else if (this.problemType == 3) {
                 type = 'wait'
+                var url = host + 'questions/' + labelid + '/label/' + type + '/'
             }
 
-            var url = host + 'questions/' + labelid + '/label/' + type + '/'
+
             axios.get(url).then(response => {
                 this.problemList = response.data;
             }).catch(error => { });
