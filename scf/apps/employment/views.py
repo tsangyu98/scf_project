@@ -1,14 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import render
-
-
-# Create your views here.
-
-
 # GET /recruits/search/latest/
-from employment.models import Recruit, City
-from employment.serializer import RecruitSerializer, CitySerializer
+from employment.models import Recruit, City, Enterprise
+from employment.serializer import RecruitSerializer, CitySerializer, HotenterpriseSerializer
 
 
 class HostCityView(APIView):
@@ -29,3 +24,14 @@ class NewPositionInfoView(APIView):
         serializer = RecruitSerializer(queryset,many=True)
 
         return Response(serializer.data)
+
+class HotenterpriseView(APIView):
+    '''热门公司'''
+    def get(self,request):
+        #获取对象
+        queryset=Enterprise.objects.filter(id=2)
+        #数据序列化返回
+        serializer =HotenterpriseSerializer(queryset,many=True)
+
+        return Response(serializer.data)
+
