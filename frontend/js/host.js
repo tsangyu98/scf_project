@@ -1,5 +1,5 @@
 // 后端接口地址
-var host = 'http://47.92.144.35:8000/';
+var host = 'http://127.0.0.1:8000/';
 
 // 获取查询字符串数据
 function get_query_string(name) {
