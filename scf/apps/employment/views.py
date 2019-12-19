@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 
 
-# GET /recruits/search/latest/
+# GET /recruits/search/recommend/
 from employment.models import Recruit
 from employment.serializer import RecruitSerializer
 

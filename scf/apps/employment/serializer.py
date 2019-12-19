@@ -1,16 +1,8 @@
 from rest_framework import serializers
 
 from employment.models import Recruit, Enterprise, City
+from users.models import User
 
-
-class RecruitSerializer(serializers.ModelSerializer):
-    """招聘信息序列化器类"""
-
-    class Meta:
-        model = Recruit
-
-        # exclude = ('detailcontent', 'detailrequire', 'visits')
-        fields = '__all__'
 
 
 class EnterpriseSerializer(serializers.ModelSerializer):
@@ -19,7 +11,7 @@ class EnterpriseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enterprise
 
-        fields = '__all__'
+        fields = ('id', 'name', 'labels', 'logo', 'summary', 'recruits')
 
 
 class CitySerializer(serializers.ModelSerializer):
@@ -29,3 +21,16 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
 
         fields = '__all__'
+
+
+class RecruitSerializer(serializers.ModelSerializer):
+    """招聘信息序列化器类"""
+
+    # 关联对象嵌套序列化
+    enterprise = EnterpriseSerializer(label='企业信息')
+
+    class Meta:
+        model = Recruit
+
+        exclude = ("address", "state", "detailcontent", "detailrequire", "users", 'visits')
+
