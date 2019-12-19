@@ -41,13 +41,3 @@ class FDFSStorage(Storage):
 
     def url(self, name):
         return self.base_url + name
-
-    def delete(self, name):
-        """
-        name:文件id
-        :param name:
-        :return:
-        """
-        client = Fdfs_client(self.client_conf)
-        # 删除FDFS中存储的图片
-        client.delete_file(name)

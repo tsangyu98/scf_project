@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'employment',  # 招聘app
     'answers',  # 问答app
     'toutiao',  # toutiao的app
+    'corsheaders',  # 跨域
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+# CORS跨域请求设置
+CORS_ORIGIN_WHITELIST = (
+    # 备注：允许源地址`http://127.0.0.1:8080`向当前API服务器发起跨域请求
+    'http://127.0.0.1:8080',
+)
+CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
 
 ROOT_URLCONF = 'scf.urls'
 
@@ -188,7 +197,8 @@ LOGGING = {
 FDFS_URL = 'http://35.220.251.0:8888/'
 # 指定文件存储类型
 DEFAULT_FILE_STORAGE = 'utils.fdfs.storage.FDFSStorage'
-
+# 设置fdfs使用的client.conf文件路径
+FDFS_CLIENT_CONF = '../../utils/fdfs/client.conf'
 
 # JWT扩展配置
 REST_FRAMEWORK = {
@@ -199,7 +209,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
-    'DEFAULT_PAGINATION_CLASS':  'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,  # 页容量
     # 指定DRF框架的异常处理函数
     'EXCEPTION_HANDLER': 'utils.exceptions.exception_handler',
@@ -213,7 +223,6 @@ JWT_AUTH = {
 
 # 指定本项目使用我们自定义的模型类:
 AUTH_USER_MODEL = 'users.User'
-
 
 # 富文本配置
 CKEDITOR_UPLOAD_PATH = "uploads/"
