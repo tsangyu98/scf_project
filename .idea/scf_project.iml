@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/scf/apps" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/scf" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (scf_project)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (meiduo_mall) (6)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
