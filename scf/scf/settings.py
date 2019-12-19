@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'scf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'HOST': '127.0.0.1',  # 数据库主机
+        'HOST': '139.224.245.6',  # 数据库主机
         'PORT': 3306,  # 数据库端口
-        'USER': 'root',  # 数据库用户名
-        'PASSWORD': 'mysql',  # 数据库用户密码
-        'NAME': 'scf_db'  # 数据库名字
+        'USER': 'scf_project',  # 数据库用户名
+        'PASSWORD': 'eWrFBpSb2H7yhm8k',  # 数据库用户密码
+        'NAME': 'scf_project'  # 数据库名字
     },
 }
 
