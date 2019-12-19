@@ -1,3 +1,4 @@
+# hello world
 """
 Django settings for scf project.
 
