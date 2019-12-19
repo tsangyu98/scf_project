@@ -1,4 +1,3 @@
-
 """
 Django settings for scf project.
 
@@ -178,7 +177,7 @@ LOGGING = {
 }
 
 # fdfs的访问域名
-FDFS_URL = 'http://:8888/'
+FDFS_URL = 'http://139.224.245.6:8888/'
 # 指定文件存储类型
 DEFAULT_FILE_STORAGE = 'utils.fdfs.storage.FDFSStorage'
 
