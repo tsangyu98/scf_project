@@ -15,7 +15,7 @@ import os, sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-sys.path.insert(0, os.path.join(BASE_DIR, 'scf/apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -177,7 +177,7 @@ LOGGING = {
 }
 
 # fdfs的访问域名
-FDFS_URL = ''
+FDFS_URL = 'http://:8888/'
 # 指定文件存储类型
 DEFAULT_FILE_STORAGE = 'scf.utils.fdfs.storage.FDFSStorage'
 
