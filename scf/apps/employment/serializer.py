@@ -34,3 +34,17 @@ class RecruitSerializer(serializers.ModelSerializer):
 
         exclude = ("address", "state", "detailcontent", "detailrequire", "users", 'visits')
 
+class CitySerializer(serializers.ModelSerializer):
+    """城市信息序列化器类"""
+    class Meta:
+        model = City
+        fields = '__all__'
+
+
+class HotenterpriseSerializer(serializers.ModelSerializer):
+    #关联对象的嵌套序列化
+    # recruits =RecruitIdSerializer(label='公司招聘岗位', many=True)
+    class Meta:
+        model = Enterprise
+        fields =('id','name','labels','logo','summary','recruits')
+
