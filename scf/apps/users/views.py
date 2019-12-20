@@ -2,7 +2,7 @@ import json
 import random
 import logging
 import re
-
+from rest_framework_jwt.settings import api_settings
 from django.db import DatabaseError
 from django.utils import timezone
 
@@ -18,7 +18,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from libs.yuntongxun.sms import CCP
-from users.serializer import AdminAuthSerializer
+from users.serializer import AdminAuthSerializer, RegisterSerializers
 
 
 class SMSCodeView(View):
@@ -83,16 +83,17 @@ class RegisterSerializer(APIView):
         3. 返回应答
         """
         # 1. 获取参数并进行校验
-        serializer = AdminAuthSerializer(data=request.data)
+        serializer = RegisterSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         # 2. 服务器签发jwt token数据(create)
         user=serializer.save()
         user.last_login = timezone.now()
         user.save()
+        user.set_password(user.password)
 
         # 服务器生成jwt token, 保存当前用户的身份信息
-        from rest_framework_jwt.settings import api_settings
+
 
         # 组织payload数据的方法
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
