@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'scf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'HOST': '35.220.251.0',  # 数据库主机
+        'HOST': 'scf-python.shsipo.cn',  # 数据库主机
         'PORT': 3306,  # 数据库端口
         'USER': 'scf_project',  # 数据库用户名
-        'PASSWORD': '3YXTmwpGKyWMhym3',  # 数据库用户密码
+        'PASSWORD': 'scf_project',  # 数据库用户密码
         'NAME': 'scf_project'  # 数据库名字
     },
 }
@@ -105,7 +105,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://35.220.251.0:6379/0",
+        "LOCATION": "redis://scf-python.shsipo.cn:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -194,7 +194,7 @@ LOGGING = {
 }
 
 # fdfs的访问域名
-FDFS_URL = 'http://35.220.251.0:8888/'
+FDFS_URL = 'http://scf-python.shsipo.cn:8888/'
 # 指定文件存储类型
 DEFAULT_FILE_STORAGE = 'utils.fdfs.storage.FDFSStorage'
 # 设置fdfs使用的client.conf文件路径

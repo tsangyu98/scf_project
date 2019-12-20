@@ -4,6 +4,22 @@ from employment.models import Recruit, Enterprise, City
 from users.models import User
 
 
+class CitySerializer(serializers.ModelSerializer):
+    """城市信息序列化器类"""
+
+    class Meta:
+        model = City
+
+        fields = '__all__'
+
+
+class HotenterpriseSerializer(serializers.ModelSerializer):
+    # 关联对象的嵌套序列化
+    # recruits =RecruitIdSerializer(label='公司招聘岗位', many=True)
+    class Meta:
+        model = Enterprise
+        fields = ('id', 'name', 'labels', 'logo', 'summary', 'recruits')
+
 
 class EnterpriseSerializer(serializers.ModelSerializer):
     """企业信息序列化器类"""
@@ -12,15 +28,6 @@ class EnterpriseSerializer(serializers.ModelSerializer):
         model = Enterprise
 
         fields = ('id', 'name', 'labels', 'logo', 'summary', 'recruits')
-
-
-class CitySerializer(serializers.ModelSerializer):
-    """城市信息序列化器类"""
-
-    class Meta:
-        model = City
-
-        fields = '__all__'
 
 
 class RecruitSerializer(serializers.ModelSerializer):
@@ -34,17 +41,14 @@ class RecruitSerializer(serializers.ModelSerializer):
 
         exclude = ("address", "state", "detailcontent", "detailrequire", "users", 'visits')
 
-class CitySerializer(serializers.ModelSerializer):
-    """城市信息序列化器类"""
-    class Meta:
-        model = City
-        fields = '__all__'
 
+class EnterpriseInfoSerializer(serializers.ModelSerializer):
+    """企业详情序列化器类"""
 
-class HotenterpriseSerializer(serializers.ModelSerializer):
-    #关联对象的嵌套序列化
-    # recruits =RecruitIdSerializer(label='公司招聘岗位', many=True)
+    recruits = RecruitSerializer(many=True)
+
     class Meta:
         model = Enterprise
-        fields =('id','name','labels','logo','summary','recruits')
 
+        fields = ('id', 'recruits', 'name', 'summary', 'content', 'city',
+                  'address', 'labels', 'coordinate', 'logo', 'url', 'visits', 'users')
