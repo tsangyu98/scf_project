@@ -89,9 +89,9 @@ class RegisterSerializer(APIView):
         # 2. 服务器签发jwt token数据(create)
         user=serializer.save()
         user.last_login = timezone.now()
-        user.save()
-        user.set_password(user.password)
 
+        user.set_password(user.password)
+        user.save()
         # 服务器生成jwt token, 保存当前用户的身份信息
 
 

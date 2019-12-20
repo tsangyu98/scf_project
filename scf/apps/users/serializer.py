@@ -16,11 +16,14 @@ class AdminAuthSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'token', 'mobile')
+        fields = ('id', 'username', 'password', 'token', 'mobile','avatar')
 
         extra_kwargs = {
             'password': {
                 'write_only': True
+            },
+            'avatar':{
+                'read_only':True
             }
         }
 
@@ -79,12 +82,15 @@ class RegisterSerializers(serializers.ModelSerializer):
     sms_code=serializers.CharField(label='验证码',read_only=True)
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'token','mobile','sms_code')
+        fields = ('id', 'username', 'password', 'token','mobile','sms_code','avatar')
 
         extra_kwargs = {
             'password': {
                 'write_only': True
             },
+            'avatar':{
+                'read_only':True
+            }
 
         }
 
@@ -92,9 +98,9 @@ class RegisterSerializers(serializers.ModelSerializer):
         # 获取username和password
             # 给attrs中添加user属性，保存登录用户
         mobile=attrs.get('mobile')
-        sms_code=attrs.pop('sms_code',None)
-        if not re.match(r'^1[345789]\d{9}$', mobile):
-            raise serializers.ValidationError('手机号格式不正确')
+        sms_code=attrs.get('sms_code')
+        # if not re.match(r'^1[345789]\d{9}$', mobile):
+        #     raise serializers.ValidationError('手机号格式不正确')
         # redis_conn = get_redis_connection('verify_code')
         # sms_code_server=redis_conn.get('sms_%s' % mobile)
         # if sms_code_server.decode() != sms_code:
