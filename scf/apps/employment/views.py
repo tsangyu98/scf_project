@@ -1,11 +1,5 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import render
-
-
-# Create your views here.
-
-
 # GET /recruits/search/recommend/
 from employment.models import Recruit, City, Enterprise
 from employment.serializer import RecruitSerializer, CitySerializer, HotenterpriseSerializer
@@ -38,3 +32,9 @@ class HotenterpriseView(APIView):
         serializer =HotenterpriseSerializer(queryset,many=True)
 
         return Response(serializer.data)
+
+
+
+        # user =request.user
+        # enterprise = Enterprise.objects.get(id =id)
+        # enterprise.users.add(user)
