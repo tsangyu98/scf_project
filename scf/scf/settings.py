@@ -116,7 +116,22 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
-    }
+    },
+    "roast": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://scf-python.shsipo.cn:6379/10",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+
+    },
+    "like": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": "redis://scf-python.shsipo.cn:6379/12",
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            }
+        }
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
@@ -226,6 +241,7 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     # 设置生成jwt token的有效时间
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.jwt_response_payload_handler',
 }
 
 # 指定本项目使用我们自定义的模型类:

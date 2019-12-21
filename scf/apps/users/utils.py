@@ -1,0 +1,15 @@
+
+
+
+def jwt_response_payload_handler(token, user=None, request=None):
+    '''自定义jwt认证成功返回数据'''
+
+    a=1
+    return {
+        'token': token,
+        'id':user.id,
+        'username':user.username,
+        'avatar':user.avatar,
+        'mobile':user.mobile
+    }
+
