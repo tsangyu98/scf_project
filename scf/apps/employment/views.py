@@ -2,6 +2,7 @@ import json
 
 from rest_framework.filters import OrderingFilter
 from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from employment.models import Recruit, City, Enterprise
@@ -93,3 +94,20 @@ class EnterpriseInfoView(APIView):
         serialiser = EnterpriseInfoSerializer(queryset)
 
         return Response(serialiser.data)
+
+
+# POST /recruits/{id}/collect/
+class CollectionPosition(APIView):
+    """收藏或者取消收藏职位"""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, id):
+        user = request.user
+
+        recruits = Recruit.objects.get(id=id)
+
+        recruits.users.add(user)
+
+        data = {'message': '收藏成功', 'success': True}
+
+        return Response(data)
