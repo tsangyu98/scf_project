@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 from datetime import datetime
 
+from users.models import User
+
 
 class Spit(models.Model):
     content = models.TextField(max_length=10000, verbose_name="吐槽内容")  # 吐槽内容
@@ -17,3 +19,13 @@ class Spit(models.Model):
                                verbose_name='被吐槽的吐槽')  # 上级ID
     collected = models.BooleanField(default=False)  # 是否收藏
     hasthumbup = models.BooleanField(default=False)  # 是否点赞
+# class Approval(models.Model):
+#     '''点赞'''
+#     user=models.ForeignKey(User,related_name='user',on_delete=models.CASCADE,verbose_name='用户外键')
+#     collect=models.ForeignKey(Spit,related_name='collect',on_delete=models.CASCADE,verbose_name='用户外键')
+#
+# class Collect (models.Model):
+#     '''收藏'''
+#     user=models.ForeignKey(User,related_name='user1',on_delete=models.CASCADE,verbose_name='用户外键')
+#     collect=models.ForeignKey(Spit,related_name='collect2',on_delete=models.CASCADE,verbose_name='用户外键')
+
