@@ -110,7 +110,7 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
-"verify_code": {
+    "verify_code": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://scf-python.shsipo.cn:6379/1",
         "OPTIONS": {

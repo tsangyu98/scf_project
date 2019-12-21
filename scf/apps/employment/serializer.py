@@ -13,7 +13,6 @@ class EnterpriseSerializer(serializers.ModelSerializer):
 
         fields = ('id', 'name', 'labels', 'logo', 'summary', 'recruits')
 
-
 class CitySerializer(serializers.ModelSerializer):
     """城市信息序列化器类"""
 
@@ -21,7 +20,6 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
 
         fields = '__all__'
-
 
 class RecruitSerializer(serializers.ModelSerializer):
     """招聘信息序列化器类"""
